@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <Button
@@ -162,4 +163,14 @@
         app:layout_constraintTop_toBottomOf="@+id/button_plus"
         app:layout_constraintStart_toEndOf="@+id/button_point"
         app:layout_constraintEnd_toEndOf="@id/button_plus" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="352dp"
+        android:layout_height="40dp"
+        android:text="TextView"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toTopOf="@+id/button_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
