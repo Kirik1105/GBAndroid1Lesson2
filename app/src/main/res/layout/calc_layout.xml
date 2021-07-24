@@ -18,7 +18,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed"
+        />
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_2"
@@ -212,7 +214,42 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/button_2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/MyCoolStyle"
+        />
+    <RadioGroup
+        android:id="@+id/radioButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_equal">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/radioButtonMyCoolStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/my_cool_style" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/radioButtonMaterialLight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/material_light" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/radioButtonMaterialLightDarkAction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/material_light_action_bar_dark" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/radioButtonMaterialDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/material_dark" />
+
+    </RadioGroup>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
