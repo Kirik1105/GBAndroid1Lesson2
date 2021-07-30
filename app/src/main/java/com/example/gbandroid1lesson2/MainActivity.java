@@ -2,9 +2,11 @@ package com.example.gbandroid1lesson2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,35 +41,9 @@ public class MainActivity extends AppCompatActivity {
         setTheme(getAppTheme(R.style.MyCoolStyle));
         setContentView(R.layout.calc_layout);
         textV = findViewById(R.id.textView);
-        initThemeChooser();
+        initView();
     }
 
-    // Инициализация радиокнопок
-    private void initThemeChooser() {
-        initRadioButton(findViewById(R.id.radioButtonMyCoolStyle),
-                MyCoolCodeStyle);
-        initRadioButton(findViewById(R.id.radioButtonMaterialDark),
-                AppThemeDarkCodeStyle);
-        initRadioButton(findViewById(R.id.radioButtonMaterialLight),
-                AppThemeLightCodeStyle);
-        initRadioButton(findViewById(R.id.radioButtonMaterialLightDarkAction),
-                AppThemeCodeStyle);
-        RadioGroup rg = findViewById(R.id.radioButtons);
-        ((MaterialRadioButton) rg.getChildAt(getCodeStyle(MyCoolCodeStyle))).setChecked(true);
-    }
-
-    // Все инициализации кнопок очень похожи, поэтому создадим метод для переиспользования
-    private void initRadioButton(View button, final int codeStyle) {
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // сохраним настройки
-                setAppTheme(codeStyle);
-                // пересоздадим активити, чтобы тема применилась
-                recreate();
-            }
-        });
-    }
 
     private int getAppTheme(int codeStyle) {
         return codeStyleToStyleId(getCodeStyle(codeStyle));
@@ -81,14 +57,6 @@ public class MainActivity extends AppCompatActivity {
         return sharedPref.getInt("AppTheme", codeStyle);
     }
 
-    // Сохранение настроек
-    private void setAppTheme(int codeStyle) {
-        SharedPreferences sharedPref = getSharedPreferences(NameSharedPreference, MODE_PRIVATE);
-        // Настройки сохраняются посредством специального класса editor.
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt("AppTheme", codeStyle);
-        editor.apply();
-    }
 
     private int codeStyleToStyleId(int codeStyle) {
         switch (codeStyle) {
@@ -101,6 +69,24 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return R.style.MyCoolStyle;
         }
+    }
+
+    private void initView() {
+        Button btnSettings = findViewById(R.id.settings);
+        btnSettings.setOnClickListener(v -> {
+            // Чтобы стартовать активити, надо подготовить интент
+            // В данном случае это будет явный интент, поскольку здесь передаётся класс активити
+            Intent runSettings = new Intent(MainActivity.this, StyleSetActivity2.class);
+            // Метод стартует активити, указанную в интенте
+            startActivity(runSettings);
+        });
+    }
+
+
+
+
+    public void buttonSet_onClick(View view) {
+
     }
 
     public void button1_onClick(View view) {

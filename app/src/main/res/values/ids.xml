@@ -17,5 +17,5 @@
     <item name="button_minus" type="id" />
     <item name="button_equal" type="id" />
     <item name="textView" type="id" />
-
+    <item name="settings" type="id" />
 </resources>
