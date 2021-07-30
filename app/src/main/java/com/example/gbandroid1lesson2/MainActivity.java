@@ -7,13 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.material.radiobutton.MaterialRadioButton;
-
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     private double calc = 0.0;
@@ -21,12 +16,11 @@ public class MainActivity extends AppCompatActivity {
     private String calcMemo2 = "";
     private int Casess;
     private TextView textV;
-
+    int Set=0;
     // Имя настроек
     private static final String NameSharedPreference = "LOGIN";
 
     // Имя параметра в настройках
-
 
     private static final String appTheme = "APP_THEME";
     private static final int MyCoolCodeStyle = 0;
@@ -34,16 +28,19 @@ public class MainActivity extends AppCompatActivity {
     private static final int AppThemeCodeStyle = 2;
     private static final int AppThemeDarkCodeStyle = 3;
 
+    public static void setStyle() {
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Устанавливать тему надо только до установки макета активити
-        setTheme(getAppTheme(R.style.MyCoolStyle));
+        setTheme(getAppTheme(Set));
         setContentView(R.layout.calc_layout);
         textV = findViewById(R.id.textView);
         initView();
     }
-
 
     private int getAppTheme(int codeStyle) {
         return codeStyleToStyleId(getCodeStyle(codeStyle));
@@ -54,9 +51,8 @@ public class MainActivity extends AppCompatActivity {
         // Работаем через специальный класс сохранения и чтения настроек
         SharedPreferences sharedPref = getSharedPreferences(NameSharedPreference, MODE_PRIVATE);
         //Прочитать тему, если настройка не найдена - взять по умолчанию
-        return sharedPref.getInt("AppTheme", codeStyle);
+        return sharedPref.getInt(appTheme, codeStyle);
     }
-
 
     private int codeStyleToStyleId(int codeStyle) {
         switch (codeStyle) {
@@ -79,10 +75,9 @@ public class MainActivity extends AppCompatActivity {
             Intent runSettings = new Intent(MainActivity.this, StyleSetActivity2.class);
             // Метод стартует активити, указанную в интенте
             startActivity(runSettings);
+
         });
     }
-
-
 
 
     public void buttonSet_onClick(View view) {
@@ -213,6 +208,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT).show();
     }
 
@@ -238,6 +234,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         Toast.makeText(getApplicationContext(), "onRestart()", Toast.LENGTH_SHORT).show();
+        recreate();
+
     }
 
     @Override

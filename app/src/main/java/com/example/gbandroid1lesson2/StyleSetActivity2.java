@@ -2,10 +2,10 @@ package com.example.gbandroid1lesson2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RadioGroup;
 
 import com.google.android.material.radiobutton.MaterialRadioButton;
@@ -59,14 +59,14 @@ public class StyleSetActivity2 extends AppCompatActivity {
         // Работаем через специальный класс сохранения и чтения настроек
         SharedPreferences sharedPref = getSharedPreferences(NameSharedPreference, MODE_PRIVATE);
         //Прочитать тему, если настройка не найдена - взять по умолчанию
-        return sharedPref.getInt("AppTheme", codeStyle);
+        return sharedPref.getInt(appTheme, codeStyle);
     }
 
     private void setAppTheme(int codeStyle) {
         SharedPreferences sharedPref = getSharedPreferences(NameSharedPreference, MODE_PRIVATE);
         // Настройки сохраняются посредством специального класса editor.
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt("AppTheme", codeStyle);
+        editor.putInt(appTheme, codeStyle);
         editor.apply();
     }
 
@@ -83,7 +83,11 @@ public class StyleSetActivity2 extends AppCompatActivity {
                 return R.style.MyCoolStyle;
         }
     }
+
     public void button_onClick(View view) {
+
+
         finish();
+
     }
 }
